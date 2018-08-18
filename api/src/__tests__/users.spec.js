@@ -74,3 +74,16 @@ test("DELETE /users/:id should delete an user", async () => {
   expect(res.status).toBe(204);
   expect(await User.findById(user.id)).toBe(null);
 });
+
+test("POST /raffle should raffle the users", async () => {
+  await User.create([
+    { name: "John Doe", email: "johndoe@example.com" },
+    { name: "Joana Doe", email: "joanadoe@example.com" },
+    { name: "Joe Doe", email: "joedoe@example.com" }
+  ]);
+
+  const res = await request().post("/raffle");
+
+  expect(res.status).toBe(200);
+  expect(res.body.message).toBe("Draw was successful");
+});

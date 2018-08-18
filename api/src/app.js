@@ -1,6 +1,7 @@
 const Koa = require("koa");
 const koaBody = require("koa-body");
 const Router = require("koa-router");
+const { shuffle } = require("lodash");
 
 const User = require("./user");
 
@@ -57,6 +58,22 @@ router.delete("/users/:id", async ctx => {
   }
 
   ctx.status = 404;
+});
+
+router.post("/raffle", async ctx => {
+  const users = await User.find();
+  const shuffled = shuffle(users);
+
+  const raffled = shuffled.map((user, index, users) => {
+    const nextIndex = (index + 1) % users.length;
+    const nextUser = users[nextIndex];
+
+    user.friend = nextUser.name;
+    return user;
+  });
+
+  await User.updateMany(raffled);
+  ctx.body = { message: "Draw was successful" };
 });
 
 app.use(router.routes());
