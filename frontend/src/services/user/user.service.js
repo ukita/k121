@@ -3,7 +3,8 @@ export default class UserService {
     "ngInject";
 
     this.$http = $http;
-    this.URL = `${process.env.API_URL}/users`;
+    this.BASE_URL = process.env.API_URL;
+    this.URL = `${this.BASE_URL}/users`;
   }
 
   get() {
@@ -28,6 +29,12 @@ export default class UserService {
 
   delete(user) {
     return this.$http.delete(`${this.URL}/${user._id}`).then(response => {
+      return response.date;
+    });
+  }
+
+  raffle() {
+    return this.$http.post(`${this.BASE_URL}/raffle`).then(response => {
       return response.date;
     });
   }

@@ -51,4 +51,10 @@ export default class UserController {
       this.users = this.users.filter(u => u._id !== user._id);
     });
   }
+
+  raffle() {
+    this.userService.raffle().then(result => {
+      console.log(result);
+    });
+  }
 }
