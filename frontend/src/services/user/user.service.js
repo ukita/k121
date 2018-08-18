@@ -35,7 +35,7 @@ export default class UserService {
 
   raffle() {
     return this.$http.post(`${this.BASE_URL}/raffle`).then(response => {
-      return response.date;
+      return response.data;
     });
   }
 }

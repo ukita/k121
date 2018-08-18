@@ -1,6 +1,17 @@
-<div>
-  <span>{{$ctrl.user.name}}</span>
-  <span><a href="mailto:{{$ctrl.user.email}}">{{$ctrl.user.email}}</a></span>
-  <span><button ng-click="$ctrl.edit()">Edit</button></span>
-  <span><button ng-click="$ctrl.delete()">Delete</button></span>
-</div>
+<md-list-item class="md-3-line">
+  <div class="md-list-item-text">
+    <h3>{{$ctrl.user.name}}</h3>
+    <h4><a href="mailto:{{$ctrl.user.email}}">{{$ctrl.user.email}}</a></h4>
+  </div>
+  <md-menu class="md-secondary">
+    <md-button>Actions</md-button>
+    <md-menu-content width="4">
+      <md-menu-item>
+        <md-button ng-click="$ctrl.edit()">Edit</md-button>
+      </md-menu-item>
+      <md-menu-item>
+        <md-button ng-click="$ctrl.delete()" class="md-warn md-raised">Delete</md-button>
+      </md-menu-item>
+    </md-menu-content>
+  </md-menu>
+</md-list-item>

@@ -1,6 +1,15 @@
-<div class="container">
-  <h1>Users</h1>
-  <app-user-form user="$ctrl.selectedUser" on-submit="$ctrl.handleSubmit(user)"></app-user-form>
-  <app-user-info ng-repeat="user in $ctrl.users" user="user" on-edit="$ctrl.editUser(user)" on-delete="$ctrl.deleteUser(user)"></app-user-info>
-  <button ng-click="$ctrl.raffle()">Raffle</button>
+<div layout="row" layout-align="center center">
+  <md-content flex="45">
+    <app-user-form user=" $ctrl.selectedUser " on-submit="$ctrl.handleSubmit(user) "></app-user-form>
+    <md-list>
+      <md-subheader class="md-no-sticky ">Participants</md-subheader>
+      <app-user-info ng-repeat="user in $ctrl.users " user="user " on-edit="$ctrl.editUser(user) " on-delete="$ctrl.deleteUser(user) "></app-user-info>
+    </md-list>
+
+    <div layout="row " layout-align="center center">
+      <md-button ng-click="$ctrl.raffle()" flex="30" class="md-raised md-primary md-block ">
+        Raffle
+      </md-button>
+    </div>
+  </md-content>
 </div>

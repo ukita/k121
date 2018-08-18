@@ -7,6 +7,12 @@ export default class FormController {
     }
 
     this.onSubmit({ user: this.user });
+    this.reset();
+  }
+
+  reset() {
     this.user = {};
+    this.form.$setPristine();
+    this.form.$setUntouched();
   }
 }

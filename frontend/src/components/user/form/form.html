@@ -1,7 +1,25 @@
 <form name="$ctrl.form" novalidate ng-submit="$ctrl.submit()">
-  <label for="name">Name</label>
-  <input type="text" required name="name" ng-model="$ctrl.user.name" />
-  <label for="email">Email</label>
-  <input type="email" required name="email" ng-model="$ctrl.user.email" />
-  <button type="submit">Submit</button>
+  <md-input-container class="md-block">
+    <label for="name">Name</label>
+    <input type="text" required name="name" ng-model="$ctrl.user.name" />
+    <div ng-messages="$ctrl.form.name.$error">
+      <div ng-message="required">This is required.</div>
+    </div>
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <label for="email">Email</label>
+    <input type="email" required name="email" ng-model="$ctrl.user.email" ng-pattern="/^.+@.+\..+$/" />
+    <div ng-messages="$ctrl.form.email.$error" role="alert" multiple>
+      <div ng-message="required">
+        This is required.
+      </div>
+      <div ng-message="pattern">
+        Invalid e-mail.
+      </div>
+    </div>
+  </md-input-container>
+  <div class="md-block">
+    <md-button type="submit" class="md-raised md-primary">Submit</md-button>
+  </div>
 </form>

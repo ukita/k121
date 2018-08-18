@@ -1,13 +1,24 @@
 export default class UserController {
   selectedUser;
 
-  constructor(userService) {
+  constructor(userService, $mdToast) {
     "ngInject";
     this.userService = userService;
+    this.$mdToast = $mdToast;
   }
 
   $onInit() {
     this.listUsers();
+  }
+
+  showToast(message) {
+    this.$mdToast.show(
+      this.$mdToast
+        .simple()
+        .position("bottom left")
+        .textContent(message)
+        .hideDelay(3000)
+    );
   }
 
   handleSubmit(user) {
@@ -28,6 +39,7 @@ export default class UserController {
   createUser(user) {
     this.userService.create(user).then(user => {
       this.users = [...this.users, user];
+      this.showToast(`Created user: ${user.name}`);
     });
   }
 
@@ -39,6 +51,8 @@ export default class UserController {
         }
         return u;
       });
+
+      this.showToast(`Updated user: ${user.name}`);
     });
   }
 
@@ -49,12 +63,13 @@ export default class UserController {
   deleteUser(user) {
     this.userService.delete(user).then(() => {
       this.users = this.users.filter(u => u._id !== user._id);
+      this.showToast(`Deleted user: ${user.name}`);
     });
   }
 
   raffle() {
     this.userService.raffle().then(result => {
-      console.log(result);
+      this.showToast(result.message);
     });
   }
 }

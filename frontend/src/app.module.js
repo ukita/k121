@@ -3,6 +3,8 @@ import "./services/core.module";
 // loading all module components
 import "./app.components";
 
+import "angular-material/angular-material.css";
+
 const appModule = angular.module("app", [
   // shared module
   "app.core",

@@ -23,7 +23,7 @@ const config = {
         loader: ["ng-annotate-loader", "babel-loader"]
       },
       {
-        test: /\.(scss)$/,
+        test: /\.(css)$/,
         use: ExtractTextWebpackPlugin.extract({
           use: [
             {
