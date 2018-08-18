@@ -20,7 +20,8 @@
     "koa-body": "^4.0.4",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.10",
-    "mongoose": "^5.2.9"
+    "mongoose": "^5.2.9",
+    "sparkpost": "^2.1.2"
   },
   "devDependencies": {
     "eslint": "^5.4.0",

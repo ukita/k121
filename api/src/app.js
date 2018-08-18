@@ -4,6 +4,7 @@ const Router = require("koa-router");
 const { shuffle } = require("lodash");
 
 const User = require("./user");
+const { sendRaffleEmail } = require("./services/email");
 
 const app = new Koa();
 const router = new Router();
@@ -73,6 +74,7 @@ router.post("/raffle", async ctx => {
   });
 
   await User.updateMany(raffled);
+  sendRaffleEmail(raffled);
   ctx.body = { message: "Draw was successful" };
 });
 

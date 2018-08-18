@@ -1,10 +1,14 @@
 const User = require("../user");
+const email = require("../services/email");
+
 const {
   connectMongoose,
   clearDatabase,
   disconnectMongoose,
   request
 } = require("../../test/util");
+
+jest.mock("../services/email");
 
 beforeAll(connectMongoose);
 
@@ -86,4 +90,16 @@ test("POST /raffle should raffle the users", async () => {
 
   expect(res.status).toBe(200);
   expect(res.body.message).toBe("Draw was successful");
+});
+
+test("POST /raffle should send emails to the participants", async () => {
+  await User.create([
+    { name: "John Doe", email: "johndoe@example.com" },
+    { name: "Joana Doe", email: "joanadoe@example.com" },
+    { name: "Joe Doe", email: "joedoe@example.com" }
+  ]);
+
+  await request().post("/raffle");
+
+  expect(email.sendRaffleEmail).toBeCalled();
 });
