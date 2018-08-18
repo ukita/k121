@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 const app = require("./app");
 
-const { MONGO_DB_URI, PORT } = process.env;
+const MONGO_DB_URI = process.env.MONGO_DB_URI || "mongodb://mongo/k121";
+const PORT = process.env.PORT || 3000;
 
 mongoose.Promise = Promise;
 

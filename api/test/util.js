@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const supertest = require("supertest");
+
+const app = require("../src/app");
 
 const mongooseOptions = {
   autoIndex: false,
@@ -29,4 +32,13 @@ async function disconnectMongoose() {
   return mongoose.disconnect();
 }
 
-module.exports = { connectMongoose, clearDatabase, disconnectMongoose };
+function request() {
+  return supertest.agent(app.listen());
+}
+
+module.exports = {
+  connectMongoose,
+  clearDatabase,
+  disconnectMongoose,
+  request
+};
