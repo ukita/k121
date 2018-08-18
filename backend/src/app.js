@@ -1,6 +1,7 @@
 const Koa = require("koa");
 const koaBody = require("koa-body");
 const Router = require("koa-router");
+const cors = require("@koa/cors");
 const { shuffle } = require("lodash");
 
 const User = require("./user");
@@ -10,6 +11,11 @@ const app = new Koa();
 const router = new Router();
 
 app.use(koaBody());
+app.use(
+  cors({
+    origin: "*"
+  })
+);
 
 router.get("/users", async ctx => {
   const users = await User.find();
