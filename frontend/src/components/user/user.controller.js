@@ -21,4 +21,10 @@ export default class UserController {
       this.users = [...this.users, user];
     });
   }
+
+  deleteUser(user) {
+    this.userService.delete(user).then(() => {
+      this.users = this.users.filter(u => u._id !== user._id);
+    });
+  }
 }

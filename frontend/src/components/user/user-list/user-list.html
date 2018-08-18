@@ -7,6 +7,7 @@
     <tr ng-repeat="user in $ctrl.users">
       <td>{{user.name}}</td>
       <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+      <td><button ng-click="$ctrl.onDelete({ user })">Delete</button></td>
     </tr>
   </tbody>
 </table>

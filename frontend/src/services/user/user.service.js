@@ -17,4 +17,10 @@ export default class UserService {
       return response.data;
     });
   }
+
+  delete(user) {
+    return this.$http.delete(`${this.URL}/${user._id}`).then(response => {
+      return response.date;
+    });
+  }
 }

@@ -5,6 +5,7 @@ export default {
   controller: controller,
   template: template,
   bindings: {
-    users: "<"
+    users: "<",
+    onDelete: "&"
   }
 };
