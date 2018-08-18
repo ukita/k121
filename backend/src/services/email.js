@@ -1,31 +1,27 @@
-const SparkPost = require("sparkpost");
+const sgMail = require("@sendgrid/mail");
 
-const API_KEY = process.env.SPARKPOST_API_KEY || "API_KEY";
+const API_KEY = process.env.SENDGRID_API_KEY || "API_KEY";
 
-const client = new SparkPost(API_KEY);
+sgMail.setApiKey(API_KEY);
 
 function sendRaffleEmail(users) {
-  const promises = users.map(user => {
-    return client.transmissions.send({
-      options: {
-        sandbox: true
-      },
-      content: {
-        from: "testing@sparkpostbox.com",
-        subject: "The draw was carried out",
-        html: `
-          <html>
-            <body>
-              <p>Your secret friend is ${user.friend}</p>
-            </body>
-          </html>
-        `
-      },
-      recipients: [{ address: user.email }]
-    });
+  const msgs = users.map(user => {
+    return {
+      to: user.email,
+      from: "no-reply@k121.com",
+      subject: "The draw was carried out",
+      text: "Your secret friend is ${user.friend}</p>",
+      html: `
+        <html>
+          <body>
+            <p>Your secret friend is ${user.friend}</p>
+          </body>
+        </html>
+      `
+    };
   });
 
-  return Promise.all(promises);
+  return sgMail.send(msgs);
 }
 
 module.exports = { sendRaffleEmail };

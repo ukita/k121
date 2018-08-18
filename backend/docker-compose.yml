@@ -5,6 +5,7 @@ services:
     build: .
     environment:
       MONGO_DB_URI: mongodb://mongo/k121
+      SENDGRID_API_KEY: SENDGRID_API_KEY
     ports:
       - "3000:3000"
     volumes:

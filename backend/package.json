@@ -16,13 +16,13 @@
   "license": "MIT",
   "dependencies": {
     "@koa/cors": "^2.2.2",
+    "@sendgrid/mail": "^6.3.1",
     "@std/esm": "^0.26.0",
     "koa": "^2.5.2",
     "koa-body": "^4.0.4",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.10",
-    "mongoose": "^5.2.9",
-    "sparkpost": "^2.1.2"
+    "mongoose": "^5.2.9"
   },
   "devDependencies": {
     "eslint": "^5.4.0",
