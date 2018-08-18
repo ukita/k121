@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  api:
+    build: .
+    environment:
+      MONGO_DB_URI: mongodb://mongo/k121
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./src:/app/src"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mvertes/alpine-mongo:4.0.0-0

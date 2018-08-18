@@ -1,0 +1,33 @@
+{
+  "name": "k121-api",
+  "version": "0.1.0",
+  "description": "Secret Santa App",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ukita/k121.git"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "author": "Bruno Ukita <brunoukita@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@std/esm": "^0.26.0",
+    "koa": "^2.5.2",
+    "koa-body": "^4.0.4",
+    "koa-router": "^7.4.0",
+    "mongoose": "^5.2.9"
+  },
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "jest": "^23.5.0",
+    "mongodb-memory-server": "^2.0.0",
+    "prettier": "^1.14.2",
+    "supertest": "^3.1.0"
+  }
+}
