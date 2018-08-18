@@ -1,0 +1,12 @@
+<table class="table table-bordered">
+  <thead class="thead-dark">
+    <th>Name</th>
+    <th>Email</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in $ctrl.users">
+      <td>{{user.name}}</td>
+      <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+    </tr>
+  </tbody>
+</table>
