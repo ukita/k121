@@ -10,6 +10,15 @@ export default class UserController {
     this.listUsers();
   }
 
+  handleSubmit(user) {
+    if (this.selectedUser) {
+      this.updateUser(user);
+      this.selectedUser = null;
+    } else {
+      this.createUser(user);
+    }
+  }
+
   listUsers() {
     this.userService.get().then(users => {
       this.users = users;
@@ -20,6 +29,21 @@ export default class UserController {
     this.userService.create(user).then(user => {
       this.users = [...this.users, user];
     });
+  }
+
+  updateUser(user) {
+    this.userService.update(user).then(user => {
+      this.users = this.users.map(u => {
+        if (u._id === user._id) {
+          return user;
+        }
+        return u;
+      });
+    });
+  }
+
+  editUser(user) {
+    this.selectedUser = user;
   }
 
   deleteUser(user) {

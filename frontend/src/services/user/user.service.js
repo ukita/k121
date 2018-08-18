@@ -18,6 +18,14 @@ export default class UserService {
     });
   }
 
+  update(user) {
+    return this.$http
+      .put(`${this.URL}/${user._id}`, { user })
+      .then(response => {
+        return response.data;
+      });
+  }
+
   delete(user) {
     return this.$http.delete(`${this.URL}/${user._id}`).then(response => {
       return response.date;

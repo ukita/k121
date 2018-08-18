@@ -1,5 +1,5 @@
 <div class="container">
   <h1>Users</h1>
-  <app-user-form on-submit="$ctrl.createUser(user)"></app-user-form>
-  <app-user-list users="$ctrl.users" on-delete="$ctrl.deleteUser(user)"></app-user-list>
+  <app-user-form user="$ctrl.selectedUser" on-submit="$ctrl.handleSubmit(user)"></app-user-form>
+  <app-user-info ng-repeat="user in $ctrl.users" user="user" on-edit="$ctrl.editUser(user)" on-delete="$ctrl.deleteUser(user)"></app-user-info>
 </div>
