@@ -11,4 +11,10 @@ export default class UserService {
       return response.data;
     });
   }
+
+  create(user) {
+    return this.$http.post(this.URL, { user }).then(response => {
+      return response.data;
+    });
+  }
 }

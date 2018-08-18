@@ -1,4 +1,5 @@
 <div class="container">
   <h1>Users</h1>
+  <app-user-form on-submit="$ctrl.createUser(user)"></app-user-form>
   <app-user-list users="$ctrl.users"></app-user-list>
 </div>
