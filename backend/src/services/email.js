@@ -5,25 +5,27 @@ const API_KEY = process.env.SPARKPOST_API_KEY || "API_KEY";
 const client = new SparkPost(API_KEY);
 
 function sendRaffleEmail(users) {
-  users.forEach(user => {
-    client.transmissions.send({
+  const promises = users.map(user => {
+    return client.transmissions.send({
       options: {
         sandbox: true
       },
       content: {
-        from: "no-reply@ukita.com",
+        from: "testing@sparkpostbox.com",
         subject: "The draw was carried out",
         html: `
           <html>
             <body>
-              <p>Your secret friend is ${friendName}</p>
+              <p>Your secret friend is ${user.friend}</p>
             </body>
           </html>
         `
       },
-      recipients: [{ address: recipient }]
+      recipients: [{ address: user.email }]
     });
   });
+
+  return Promise.all(promises);
 }
 
 module.exports = { sendRaffleEmail };

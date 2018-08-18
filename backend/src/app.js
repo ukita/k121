@@ -80,7 +80,7 @@ router.post("/raffle", async ctx => {
   });
 
   await User.updateMany(raffled);
-  sendRaffleEmail(raffled);
+  await sendRaffleEmail(raffled);
   ctx.body = { message: "Draw was successful" };
 });
 
