@@ -6,7 +6,7 @@ COPY package.json package-lock.json ./
 
 RUN npm install --only=production
 
-COPY ./src .
+COPY ./src ./src
 
 ENV PORT 3000
 
