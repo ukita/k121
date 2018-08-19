@@ -73,14 +73,24 @@ router.post("/raffle", async ctx => {
 
   const raffled = shuffled.map((user, index, users) => {
     const nextIndex = (index + 1) % users.length;
-    const nextUser = users[nextIndex];
+    const { name } = users[nextIndex];
 
-    user.friend = nextUser.name;
+    user.friend = name;
     return user;
   });
 
-  await User.updateMany(raffled);
+  // Build operations to send on bulk write
+  const ops = raffled.map(({ _id, friend }) => {
+    return {
+      updateOne: {
+        filter: { _id },
+        update: { friend }
+      }
+    };
+  });
+  await User.bulkWrite(ops);
   await sendRaffleEmail(raffled);
+
   ctx.body = { message: "Draw was successful" };
 });
 
