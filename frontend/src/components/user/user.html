@@ -3,6 +3,9 @@
     <app-user-form user=" $ctrl.selectedUser " on-submit="$ctrl.handleSubmit(user) "></app-user-form>
     <md-list>
       <md-subheader class="md-no-sticky ">Participants</md-subheader>
+      <div layout="row" layout-sm="column" layout-align="space-around" ng-if="$ctrl.loading">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+      </div>
       <app-user-info ng-repeat="user in $ctrl.users " user="user " on-edit="$ctrl.editUser(user) " on-delete="$ctrl.deleteUser(user) "></app-user-info>
     </md-list>
 

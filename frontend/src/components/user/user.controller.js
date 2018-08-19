@@ -1,5 +1,6 @@
 export default class UserController {
   selectedUser;
+  loading = false;
 
   constructor(userService, $mdToast) {
     "ngInject";
@@ -31,9 +32,13 @@ export default class UserController {
   }
 
   listUsers() {
-    this.userService.get().then(users => {
-      this.users = users;
-    });
+    this.loading = true;
+    this.userService
+      .get()
+      .then(users => {
+        this.users = users;
+      })
+      .finally(() => (this.loading = false));
   }
 
   createUser(user) {
