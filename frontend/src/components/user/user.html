@@ -1,5 +1,5 @@
-<div layout="row" layout-align="center center">
-  <md-content flex="45">
+<div layout="row" layout-md="row" layout-wrap layout-align="center center">
+  <div flex="100" flex-md="70" flex-gt-md="50">
     <app-user-form user=" $ctrl.selectedUser " on-submit="$ctrl.handleSubmit(user) "></app-user-form>
     <md-list>
       <md-subheader class="md-no-sticky ">Participants</md-subheader>
@@ -14,5 +14,5 @@
         Raffle
       </md-button>
     </div>
-  </md-content>
+  </div>
 </div>
